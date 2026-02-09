@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Jaani 💗</title>
+
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      overflow:hidden;
+      background:#ff69b4; /* PINK */
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family: Arial, sans-serif;
+    }
+
+    .card{
+      width:min(520px, 92vw);
+      background: rgba(255,255,255,0.25);
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 22px;
+      padding: 22px;
+      text-align:center;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      position:relative;
+      z-index:10;
+    }
+
+    h1{
+      margin:0;
+      color:#fff;
+      font-size: 34px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    p{
+      color:#fff;
+      font-size: 18px;
+      line-height:1.5;
+      margin: 12px 0;
+    }
+
+    .btns{
+      margin-top: 14px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    button{
+      border:none;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight:700;
+      cursor:pointer;
+      transition: 0.2s;
+    }
+
+    .yes{
+      background:#fff;
+      color:#ff1493;
+    }
+
+    .no{
+      background:#ff1493;
+      color:#fff;
+    }
+
+    button:active{
+      transform: scale(0.95);
+    }
+
+    /* Floating hearts animation */
+    .heart{
+      position:absolute;
+      bottom:-30px;
+      font-size: 22px;
+      animation: floatUp linear forwards;
+      z-index:1;
+      opacity:0.95;
+    }
+
+    @keyframes floatUp{
+      from{
+        transform: translateY(0) translateX(0) scale(1);
+        opacity:1;
+      }
+      to{
+        transform: translateY(-110vh) translateX(var(--x)) scale(1.4);
+        opacity:0;
+      }
+    }
+
+    /* Popup */
+    .popup{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,0.35);
+      z-index:999;
+      padding:18px;
+    }
+
+    .box{
+      width:min(520px, 92vw);
+      background:#fff;
+      border-radius: 22px;
+      padding: 22px;
+      text-align:center;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.3);
+    }
+
+    .box h2{
+      margin:0;
+      color:#ff1493;
+      font-size: 28px;
+    }
+
+    .box p{
+      color:#444;
+      font-size: 17px;
+      margin-top:10px;
+    }
+
+    .close{
+      margin-top:14px;
+      width:100%;
+      background:#ff1493;
+      color:#fff;
+    }
+
+    /* Flower pop */
+    .flower{
+      position:absolute;
+      bottom:-30px;
+      font-size: 24px;
+      animation: flowerUp 3.2s ease-out forwards;
+      z-index:2;
+    }
+
+    @keyframes flowerUp{
+      0%{ transform: translateY(0) scale(0.4); opacity:0;}
+      15%{ opacity:1;}
+      100%{ transform: translateY(-100vh) scale(1.3) rotate(360deg); opacity:0;}
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Hey Jaani 💗</h1>
+
+    <p>
+      It’s <b>Rizz</b> here 😌✨ <br>
+      I just wanted to ask you something…
+    </p>
+
+    <p style="font-size:20px; font-weight:800;">
+      Will you be my Valentine? 🌹
+    </p>
+
+    <div class="btns">
+      <button class="yes" id="yesBtn">Yes 😍</button>
+      <button class="no" id="noBtn">No 🙄</button>
+    </div>
+
+    <p style="font-size:13px; opacity:0.9;">Tap “Yes” for surprise 🎉</p>
+  </div>
+
+  <div class="popup" id="popup">
+    <div class="box">
+      <h2>YAYYYY Jaani 😭💖</h2>
+      <p>
+        You just made <b>Rizz</b> the happiest 💞 <br>
+        Now you owe me hugs 🤭✨
+      </p>
+      <button class="close" id="closeBtn">Okayyy 😘</button>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("closeBtn");
+
+    // Create floating hearts continuously
+    function createHeart(){
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.setProperty("--x", (Math.random()*200 - 100) + "px");
+      heart.style.animationDuration = (Math.random()*2 + 3) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 350);
+
+    // Flower celebration
+    function createFlower(){
+      const flower = document.createElement("div");
+      flower.className = "flower";
+
+      const flowers = ["🌸","🌷","🌹","💐","🌺"];
+      flower.innerText = flowers[Math.floor(Math.random()*flowers.length)];
+
+      flower.style.left = Math.random() * 100 + "%";
+      document.body.appendChild(flower);
+
+      setTimeout(() => flower.remove(), 3500);
+    }
+
+    // When Yes clicked
+    yesBtn.addEventListener("click", () => {
+      popup.style.display = "flex";
+
+      // Burst flowers for 2 seconds
+      let count = 0;
+      const burst = setInterval(() => {
+        createFlower();
+        count++;
+        if(count > 25) clearInterval(burst);
+      }, 80);
+    });
+
+    closeBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+
+    // No button runs away (works on phone too)
+    function runAway(){
+      const x = (Math.random() * 200 - 100);
+      const y = (Math.random() * 120 - 60);
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noBtn.addEventListener("mouseover", runAway);
+    noBtn.addEventListener("touchstart", runAway);
+  </script>
+
+</body>
+</html>
